@@ -1,14 +1,23 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FiExternalLink, FiAward, FiFilter } from 'react-icons/fi';
+import { FiExternalLink, FiAward, FiFilter, FiCpu } from 'react-icons/fi';
+import { SiGoogle } from 'react-icons/si';
+import { FaMicrosoft } from 'react-icons/fa';
 import { certificates } from '../data/portfolioData';
 
+const DeloitteLogo = ({ size = 22 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="11" fill="#86BC25" />
+    <text x="12" y="16" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="bold" fontFamily="Arial">D</text>
+  </svg>
+);
+
 const issuerIcons = {
-  Google: '🔵',
-  NeuralSeek: '🤖',
-  'Deloitte Australia, Forage': '🏢',
-  'Microsoft, edX': '🟦',
+  Google: <SiGoogle size={22} color="#4285F4" />,
+  NeuralSeek: <FiCpu size={22} color="#8B5CF6" />,
+  'Deloitte Australia, Forage': <DeloitteLogo size={22} />,
+  'Microsoft, edX': <FaMicrosoft size={22} color="#00A4EF" />,
 };
 
 export default function Certificates() {
@@ -75,7 +84,7 @@ export default function Certificates() {
                 whileHover={{ y: -5, scale: 1.02 }}
               >
                 <div className="cert-card-icon">
-                  <span>{issuerIcons[cert.issuer] || '📜'}</span>
+                  <span>{issuerIcons[cert.issuer] || <FiAward size={22} />}</span>
                 </div>
                 <div className="cert-card-content">
                   <h3 className="cert-title">{cert.title}</h3>

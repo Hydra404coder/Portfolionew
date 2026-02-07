@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FiMapPin, FiBookOpen, FiCode, FiAward } from 'react-icons/fi';
+import { SiGoogle } from 'react-icons/si';
 import { personalData } from '../data/portfolioData';
 
 const stats = [
@@ -42,7 +43,7 @@ export default function About() {
                 <span>B.E. in AI & Machine Learning</span>
               </div>
               <div className="highlight">
-                <span className="highlight-icon">🤖</span>
+                <span className="highlight-icon"><SiGoogle size={18} color="#4285F4" /></span>
                 <span>Google Student AI Ambassador</span>
               </div>
               <div className="highlight">
