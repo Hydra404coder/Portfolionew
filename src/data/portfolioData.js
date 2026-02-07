@@ -7,7 +7,7 @@ export const personalData = {
     'AI/ML Engineer',
     'Google Student Ambassador',
   ],
-  email: 'akhilshibu404@gmail.com',
+  email: 'akhilshibu2710@gmail.com',
   linkedin: 'https://www.linkedin.com/in/akhil-dev404',
   github: 'https://github.com/Hydra404coder',
   location: 'Bangalore, India',
