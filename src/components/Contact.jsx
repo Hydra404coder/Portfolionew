@@ -21,19 +21,57 @@ export default function Contact() {
   });
   const [status, setStatus] = useState(null);
 
+  const openHref = (href) => {
+    const link = document.createElement('a');
+    link.href = href;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const buildMailtoLink = () => {
+    const subject = encodeURIComponent(formData.subject);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    );
+    return `mailto:${personalData.email}?subject=${subject}&body=${body}`;
+  };
+
+  const buildGmailComposeUrl = () => {
+    const to = encodeURIComponent(personalData.email);
+    const su = encodeURIComponent(formData.subject);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    );
+    return `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${su}&body=${body}`;
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Mailto fallback
-    const mailtoLink = `mailto:${personalData.email}?subject=${encodeURIComponent(
-      formData.subject
-    )}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-    )}`;
-    window.location.href = mailtoLink;
+
+    const mailtoLink = buildMailtoLink();
+    const gmailComposeUrl = buildGmailComposeUrl();
+
+    let didBlur = false;
+    const onBlur = () => {
+      didBlur = true;
+    };
+    window.addEventListener('blur', onBlur, { once: true });
+
+    openHref(mailtoLink);
+
+    // If no desktop mailto handler is configured, fall back to Gmail compose.
+    setTimeout(() => {
+      if (!didBlur) {
+        window.location.href = gmailComposeUrl;
+      }
+    }, 700);
+
     setStatus('sent');
     setFormData({ name: '', email: '', subject: '', message: '' });
     setTimeout(() => setStatus(null), 3000);
