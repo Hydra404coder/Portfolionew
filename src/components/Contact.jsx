@@ -33,7 +33,7 @@ export default function Contact() {
     )}&body=${encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
     )}`;
-    window.open(mailtoLink, '_blank');
+    window.location.href = mailtoLink;
     setStatus('sent');
     setFormData({ name: '', email: '', subject: '', message: '' });
     setTimeout(() => setStatus(null), 3000);
