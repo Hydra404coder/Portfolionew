@@ -147,37 +147,38 @@ code {
 .section-glow-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.12;
-  will-change: transform;
+  filter: blur(100px);
+  opacity: 0.25;
+  will-change: transform, opacity;
 }
 
 .glow-orb-1 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, var(--accent), transparent 70%);
-  top: 20%;
-  right: -10%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, var(--accent), transparent 65%);
+  top: 15%;
+  right: -15%;
 }
 
 .glow-orb-2 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, #8b5cf6, transparent 70%);
-  bottom: 10%;
-  left: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #8b5cf6, transparent 65%);
+  bottom: 5%;
+  left: -15%;
 }
 
 .glow-orb-3 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, #06b6d4, transparent 70%);
-  top: 60%;
-  left: 40%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #06b6d4, transparent 65%);
+  top: 55%;
+  left: 35%;
 }
 
 [data-theme='light'] .section-glow-orb {
-  opacity: 0.08;
+  opacity: 0.12;
+  filter: blur(120px);
 }
 
 .gradient-text {
@@ -1828,25 +1829,25 @@ code {
     padding: 60px 0;
   }
 
-  /* Global glow on mobile */
+  /* Global glow on mobile - more visible */
   .section-glow-orb {
-    filter: blur(100px);
-    opacity: 0.15;
+    filter: blur(80px);
+    opacity: 0.3;
   }
 
   .glow-orb-1 {
+    width: 400px;
+    height: 400px;
+  }
+
+  .glow-orb-2 {
     width: 350px;
     height: 350px;
   }
 
-  .glow-orb-2 {
+  .glow-orb-3 {
     width: 300px;
     height: 300px;
-  }
-
-  .glow-orb-3 {
-    width: 250px;
-    height: 250px;
   }
 
   .section-header {

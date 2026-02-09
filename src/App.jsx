@@ -19,8 +19,8 @@ export default function App() {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('darkMode');
       if (saved !== null) return JSON.parse(saved);
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
+    // Default to dark theme
     return true;
   });
 
@@ -60,19 +60,34 @@ export default function App() {
 
   return (
     <div className="app">
-      {/* Global glossy background with parallax */}
+      {/* Global glossy background with parallax + subtle animation */}
       <div className="section-glow">
         <motion.div
           className="section-glow-orb glow-orb-1"
           style={{ y: glowY1, x: glowX1 }}
+          animate={{
+            scale: [1, 1.15, 1],
+            opacity: [0.25, 0.35, 0.25],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
           className="section-glow-orb glow-orb-2"
           style={{ y: glowY2, x: glowX2 }}
+          animate={{
+            scale: [1.1, 1, 1.1],
+            opacity: [0.22, 0.32, 0.22],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
           className="section-glow-orb glow-orb-3"
           style={{ y: glowY3 }}
+          animate={{
+            scale: [1, 1.2, 0.95, 1],
+            opacity: [0.2, 0.3, 0.25, 0.2],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
         />
       </div>
 
