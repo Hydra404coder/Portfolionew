@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -50,8 +50,32 @@ export default function App() {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // Parallax effect for global glossy background
+  const { scrollY } = useScroll();
+  const glowY1 = useTransform(scrollY, [0, 3000], [0, -400]);
+  const glowY2 = useTransform(scrollY, [0, 3000], [0, -250]);
+  const glowY3 = useTransform(scrollY, [0, 3000], [0, -550]);
+  const glowX1 = useTransform(scrollY, [0, 3000], [0, -100]);
+  const glowX2 = useTransform(scrollY, [0, 3000], [0, 150]);
+
   return (
     <div className="app">
+      {/* Global glossy background with parallax */}
+      <div className="section-glow">
+        <motion.div
+          className="section-glow-orb glow-orb-1"
+          style={{ y: glowY1, x: glowX1 }}
+        />
+        <motion.div
+          className="section-glow-orb glow-orb-2"
+          style={{ y: glowY2, x: glowX2 }}
+        />
+        <motion.div
+          className="section-glow-orb glow-orb-3"
+          style={{ y: glowY3 }}
+        />
+      </div>
+
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <main>
         <Hero />

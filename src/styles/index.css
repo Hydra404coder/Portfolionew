@@ -128,6 +128,56 @@ code {
 .section {
   padding: 100px 0;
   position: relative;
+  overflow: hidden;
+}
+
+/* Global glossy background for sections */
+.section-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.section-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.12;
+  will-change: transform;
+}
+
+.glow-orb-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent), transparent 70%);
+  top: 20%;
+  right: -10%;
+}
+
+.glow-orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #8b5cf6, transparent 70%);
+  bottom: 10%;
+  left: -10%;
+}
+
+.glow-orb-3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #06b6d4, transparent 70%);
+  top: 60%;
+  left: 40%;
+}
+
+[data-theme='light'] .section-glow-orb {
+  opacity: 0.08;
 }
 
 .gradient-text {
@@ -1778,6 +1828,27 @@ code {
     padding: 60px 0;
   }
 
+  /* Global glow on mobile */
+  .section-glow-orb {
+    filter: blur(100px);
+    opacity: 0.15;
+  }
+
+  .glow-orb-1 {
+    width: 350px;
+    height: 350px;
+  }
+
+  .glow-orb-2 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .glow-orb-3 {
+    width: 250px;
+    height: 250px;
+  }
+
   .section-header {
     margin-bottom: 40px;
   }
@@ -1816,37 +1887,38 @@ code {
     display: none;
   }
 
-  /* Reduce gradient orbs on mobile */
+  /* Make gradient orbs more visible on mobile */
   .gradient-orb {
-    opacity: 0.15;
-    filter: blur(100px);
+    opacity: 0.28;
+    filter: blur(70px);
   }
 
   .orb-1 {
+    width: 350px;
+    height: 350px;
+  }
+
+  .orb-2 {
     width: 300px;
     height: 300px;
   }
 
-  .orb-2 {
-    width: 250px;
-    height: 250px;
-  }
-
   .orb-3 {
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
+    opacity: 0.25;
   }
 
   .orb-4 {
-    width: 150px;
-    height: 150px;
-    opacity: 0.12;
+    width: 180px;
+    height: 180px;
+    opacity: 0.22;
   }
 
   .orb-5 {
-    width: 160px;
-    height: 160px;
-    opacity: 0.12;
+    width: 200px;
+    height: 200px;
+    opacity: 0.22;
   }
 
   .orb-6 {
