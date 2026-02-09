@@ -129,37 +129,37 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
             </motion.button>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              className="mobile-menu"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-            >
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.id}
-                  href={`#${link.id}`}
-                  className={`mobile-link ${activeSection === link.id ? 'active' : ''}`}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.04, duration: 0.25 }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollTo(link.id);
-                  }}
-                >
-                  {link.label}
-                </motion.a>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
       </motion.nav>
+
+      {/* Mobile Menu — rendered OUTSIDE motion.nav so position:fixed works */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="mobile-menu"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+          >
+            {navLinks.map((link, i) => (
+              <motion.a
+                key={link.id}
+                href={`#${link.id}`}
+                className={`mobile-link ${activeSection === link.id ? 'active' : ''}`}
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.04, duration: 0.25 }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo(link.id);
+                }}
+              >
+                {link.label}
+              </motion.a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
