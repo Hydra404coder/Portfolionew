@@ -56,24 +56,24 @@ export default function Hero() {
         />
       </div>
 
-      {/* Floating particles */}
+      {/* Floating particles (reduced for performance) */}
       <div className="particles">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
             className="particle"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 4 + 2}px`,
-              height: `${Math.random() * 4 + 2}px`,
+              width: `${Math.random() * 3 + 2}px`,
+              height: `${Math.random() * 3 + 2}px`,
             }}
             animate={{
-              y: [0, Math.random() * -100 - 50],
-              opacity: [0, 1, 0],
+              y: [0, Math.random() * -80 - 30],
+              opacity: [0, 0.8, 0],
             }}
             transition={{
-              duration: Math.random() * 5 + 5,
+              duration: Math.random() * 6 + 6,
               repeat: Infinity,
               delay: Math.random() * 5,
               ease: 'easeInOut',

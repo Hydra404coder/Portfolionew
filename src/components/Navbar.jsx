@@ -29,11 +29,26 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const scrollTo = useCallback((id) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
       setIsOpen(false);
+      // Small delay to let menu close before scrolling
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
     }
   }, []);
 
@@ -120,19 +135,19 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
           {isOpen && (
             <motion.div
               className="mobile-menu"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
             >
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.id}
                   href={`#${link.id}`}
                   className={`mobile-link ${activeSection === link.id ? 'active' : ''}`}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
+                  transition={{ delay: i * 0.04, duration: 0.25 }}
                   onClick={(e) => {
                     e.preventDefault();
                     scrollTo(link.id);

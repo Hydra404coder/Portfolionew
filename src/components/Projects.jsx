@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FiGithub, FiExternalLink, FiChevronRight } from 'react-icons/fi';
+import { FiGithub, FiExternalLink, FiChevronRight, FiChevronDown } from 'react-icons/fi';
 import { projects } from '../data/portfolioData';
 
 const techColors = {
@@ -41,6 +41,18 @@ const techColors = {
 export default function Projects() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [hoveredProject, setHoveredProject] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener('resize', check, { passive: true });
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  const MOBILE_LIMIT = 4;
+  const visibleProjects = isMobile && !showAll ? projects.slice(0, MOBILE_LIMIT) : projects;
 
   return (
     <section id="projects" className="section projects" ref={ref}>
@@ -58,7 +70,7 @@ export default function Projects() {
         </motion.div>
 
         <div className="projects-grid">
-          {projects.map((project, i) => (
+          {visibleProjects.map((project, i) => (
             <motion.div
               key={i}
               className="project-card"
@@ -137,6 +149,25 @@ export default function Projects() {
             </motion.div>
           ))}
         </div>
+
+        {/* Show more on mobile */}
+        {isMobile && !showAll && projects.length > MOBILE_LIMIT && (
+          <motion.div
+            className="projects-show-more"
+            style={{ display: 'block' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <motion.button
+              className="btn btn-outline"
+              onClick={() => setShowAll(true)}
+              whileTap={{ scale: 0.95 }}
+            >
+              Show {projects.length - MOBILE_LIMIT} More Projects <FiChevronDown size={16} />
+            </motion.button>
+          </motion.div>
+        )}
 
         <motion.div
           className="projects-cta"

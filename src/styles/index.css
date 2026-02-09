@@ -71,17 +71,20 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 16px);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   font-family: var(--font-sans);
+  font-size: 16px;
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
@@ -101,6 +104,11 @@ button {
   cursor: pointer;
   font-family: inherit;
   color: inherit;
+  touch-action: manipulation;
+}
+
+a {
+  touch-action: manipulation;
 }
 
 code {
@@ -214,8 +222,10 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
   border-radius: 50%;
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -233,31 +243,40 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: var(--radius-sm);
   color: var(--text-primary);
 }
 
 .mobile-menu {
-  position: absolute;
+  position: fixed;
   top: var(--nav-height);
   left: 0;
   right: 0;
+  bottom: 0;
   background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 24px;
-  overflow: hidden;
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  overflow-y: auto;
+  z-index: 999;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .mobile-link {
-  display: block;
-  padding: 12px 16px;
-  font-size: 0.95rem;
-  font-weight: 500;
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  min-height: 48px;
+  font-size: 1.05rem;
+  font-weight: 600;
   color: var(--text-secondary);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   transition: all 0.2s ease;
+  margin-bottom: 4px;
 }
 
 .mobile-link:hover,
@@ -399,6 +418,35 @@ code {
   line-height: 1.7;
 }
 
+/* Floating CTA for mobile */
+.floating-cta {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 900;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gradient-1);
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px var(--accent-glow), 0 8px 32px rgba(0,0,0,0.3);
+  border: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-cta:active {
+  transform: scale(0.92);
+}
+
+.floating-cta.hidden {
+  display: none !important;
+}
+
 .hero-buttons {
   display: flex;
   gap: 16px;
@@ -450,14 +498,17 @@ code {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 12px 28px;
-  font-size: 0.95rem;
+  padding: 14px 28px;
+  min-height: 48px;
+  font-size: 1rem;
   font-weight: 600;
   border-radius: var(--radius-md);
   transition: all 0.2s ease;
   cursor: pointer;
   border: none;
+  touch-action: manipulation;
 }
 
 .btn-primary {
@@ -999,6 +1050,26 @@ code {
   color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.project-card:hover .project-desc,
+.project-card:focus-within .project-desc {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.projects-show-more {
+  display: none;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.projects-show-more .btn {
+  min-width: 200px;
 }
 
 .project-card-bottom {
@@ -1673,7 +1744,11 @@ code {
 /* Mobile */
 @media (max-width: 768px) {
   .section {
-    padding: 70px 0;
+    padding: 60px 0;
+  }
+
+  .section-header {
+    margin-bottom: 40px;
   }
 
   .nav-links {
@@ -1695,11 +1770,67 @@ code {
   }
 
   .hero-description {
-    font-size: 0.95rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .hero-badge {
+    font-size: 0.8rem;
+    padding: 6px 16px;
+    margin-bottom: 24px;
+  }
+
+  /* Hide particles on mobile for performance */
+  .particles {
+    display: none;
+  }
+
+  /* Reduce gradient orbs on mobile */
+  .gradient-orb {
+    opacity: 0.15;
+    filter: blur(100px);
+  }
+
+  .orb-1 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .orb-2 {
+    width: 250px;
+    height: 250px;
+  }
+
+  .orb-3 {
+    display: none;
+  }
+
+  .scroll-indicator {
+    display: none;
   }
 
   .projects-grid {
     grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    padding: 22px;
+  }
+
+  .project-title {
+    font-size: 1.05rem;
+  }
+
+  .projects-show-more {
+    display: block;
+  }
+
+  .project-card.mobile-hidden {
+    display: none;
+  }
+
+  .floating-cta {
+    display: flex;
   }
 
   .cert-grid {
@@ -1710,16 +1841,80 @@ code {
     grid-template-columns: 1fr;
   }
 
+  .about-grid {
+    gap: 36px;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
   .about-stats {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-card {
+    padding: 20px 16px;
+  }
+
+  .stat-value {
+    font-size: 1.6rem;
+  }
+
+  .highlight {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+
+  .timeline-card {
+    padding: 20px;
+  }
+
+  .exp-desc {
+    font-size: 0.88rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+  }
+
+  .skill-category {
+    padding: 22px;
+  }
+
+  .skills-marquee {
+    margin-bottom: 32px;
+    padding: 16px 0;
   }
 
   .form-row {
     grid-template-columns: 1fr;
   }
 
+  .contact-form {
+    padding: 24px;
+  }
+
+  .contact-info h3 {
+    font-size: 1.3rem;
+  }
+
+  .resume-card {
+    padding: 32px 24px;
+  }
+
   .resume-viewer {
     height: 500px;
+  }
+
+  .award-item {
+    padding: 16px 18px;
+  }
+
+  .award-item p {
+    font-size: 0.88rem;
   }
 
   .footer-content {
@@ -1733,6 +1928,10 @@ code {
     gap: 16px;
     text-align: center;
   }
+
+  .footer {
+    padding: 32px 0 calc(24px + 72px);
+  }
 }
 
 /* Small Mobile */
@@ -1741,23 +1940,33 @@ code {
     padding: 0 16px;
   }
 
+  .section {
+    padding: 48px 0;
+  }
+
+  .section-header {
+    margin-bottom: 32px;
+  }
+
   .hero-title {
     font-size: 1.8rem;
   }
 
   .hero-buttons {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
   }
 
   .btn {
     width: 100%;
     justify-content: center;
+    padding: 16px 24px;
   }
 
   .edu-card {
     flex-direction: column;
     align-items: flex-start;
+    padding: 22px;
   }
 
   .cert-filters {
@@ -1766,15 +1975,77 @@ code {
     flex-wrap: nowrap;
     padding-bottom: 8px;
     -webkit-overflow-scrolling: touch;
+    gap: 8px;
   }
 
   .filter-btn {
     white-space: nowrap;
     flex-shrink: 0;
+    min-height: 40px;
+    padding: 8px 16px;
+  }
+
+  .cert-card {
+    padding: 16px;
+  }
+
+  .about-stats {
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 18px 12px;
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+  }
+
+  .social-link {
+    padding: 12px 16px;
+    min-height: 48px;
+  }
+
+  .floating-cta {
+    bottom: 20px;
+    right: 20px;
   }
 
   .resume-viewer {
     height: 400px;
+  }
+
+  .mobile-menu {
+    padding: 20px 16px;
+  }
+
+  .mobile-link {
+    padding: 14px 16px;
+    font-size: 1rem;
+  }
+}
+
+/* ===================================
+   Reduced Motion Preferences
+   =================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .particles,
+  .gradient-orb,
+  .hero-bg-effects {
+    display: none !important;
   }
 }
 
