@@ -801,34 +801,35 @@ code {
 .stat-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 28px 20px;
+  border-radius: var(--radius-md);
+  padding: 18px 16px;
   text-align: center;
   transition: all 0.3s ease;
 }
 
 .stat-card:hover {
   border-color: var(--accent);
-  box-shadow: 0 8px 30px var(--accent-glow);
+  box-shadow: 0 6px 24px var(--accent-glow);
 }
 
 .stat-icon {
   color: var(--accent);
-  font-size: 1.5rem;
-  margin-bottom: 12px;
+  font-size: 1.25rem;
+  margin-bottom: 8px;
 }
 
 .stat-value {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: 700;
   margin-bottom: 4px;
 }
 
 .stat-label {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 /* ===================================
@@ -1329,7 +1330,7 @@ code {
 
 .skills-intro-image {
   flex-shrink: 0;
-  width: 220px;
+  width: 320px;
 }
 
 .skills-illus {

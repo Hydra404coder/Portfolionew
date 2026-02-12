@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
-import { FiMapPin, FiBookOpen, FiCode, FiAward } from 'react-icons/fi';
+import { FiCpu, FiLayers, FiEye, FiHardDrive } from 'react-icons/fi';
 import { SiGoogle } from 'react-icons/si';
 import { personalData } from '../data/portfolioData';
 
-const stats = [
-  { icon: <FiCode />, value: '8+', label: 'Projects' },
-  { icon: <FiAward />, value: '12', label: 'Certificates' },
-  { icon: <FiBookOpen />, value: '8.75', label: 'CGPA' },
-  { icon: <FiMapPin />, value: 'BLR', label: 'Bangalore' },
+const domains = [
+  { icon: <FiCpu />, title: 'AI & RAG', items: 'AIKSP, YTRAG, NeuralSeek Agent' },
+  { icon: <FiLayers />, title: 'Full Stack', items: 'React, FastAPI, Flask, Node.js' },
+  { icon: <FiEye />, title: 'Computer Vision', items: 'YOLOv5, OpenCV, MediaPipe' },
+  { icon: <FiHardDrive />, title: 'IoT & Embedded', items: 'Arduino, RFID, LoRaWAN' },
 ];
 
 export default function About() {
@@ -56,15 +56,15 @@ export default function About() {
             </div>
 
             <div className="about-stats">
-              {stats.map((stat, i) => (
+              {domains.map((d, i) => (
                 <motion.div
                   key={i}
                   className="stat-card"
-                  whileHover={{ scale: 1.05, y: -5 }}
+                  whileHover={{ scale: 1.04, y: -3 }}
                 >
-                  <div className="stat-icon">{stat.icon}</div>
-                  <div className="stat-value">{stat.value}</div>
-                  <div className="stat-label">{stat.label}</div>
+                  <div className="stat-icon">{d.icon}</div>
+                  <div className="stat-value">{d.title}</div>
+                  <div className="stat-label">{d.items}</div>
                 </motion.div>
               ))}
             </div>
