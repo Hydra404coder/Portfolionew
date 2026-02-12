@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { FiExternalLink, FiAward, FiFilter, FiCpu } from 'react-icons/fi';
+import { FiExternalLink, FiAward, FiFilter, FiCpu, FiImage, FiX } from 'react-icons/fi';
 import { SiGoogle } from 'react-icons/si';
 import { FaMicrosoft } from 'react-icons/fa';
 import { certificates } from '../data/portfolioData';
@@ -21,8 +20,8 @@ const issuerIcons = {
 };
 
 export default function Certificates() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [filter, setFilter] = useState('All');
+  const [previewImage, setPreviewImage] = useState(null);
 
   const issuers = ['All', ...new Set(certificates.map((c) => c.issuer))];
   const filtered =
@@ -30,28 +29,25 @@ export default function Certificates() {
       ? certificates
       : certificates.filter((c) => c.issuer === filter);
 
+  const handleCertClick = (e, cert) => {
+    if (cert.isImage) {
+      e.preventDefault();
+      setPreviewImage(cert.link);
+    }
+  };
+
   return (
-    <section id="certificates" className="section certificates" ref={ref}>
+    <section id="certificates" className="section certificates">
       <div className="container">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="section-header">
           <span className="section-tag">Certificates</span>
           <h2 className="section-title">
             My <span className="gradient-text">credentials</span>
           </h2>
-        </motion.div>
+        </div>
 
         {/* Filter */}
-        <motion.div
-          className="cert-filters"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
+        <div className="cert-filters">
           <FiFilter size={16} />
           {issuers.map((issuer) => (
             <motion.button
@@ -64,7 +60,7 @@ export default function Certificates() {
               {issuer}
             </motion.button>
           ))}
-        </motion.div>
+        </div>
 
         {/* Grid */}
         <motion.div className="cert-grid" layout>
@@ -82,9 +78,10 @@ export default function Certificates() {
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 whileHover={{ y: -5, scale: 1.02 }}
+                onClick={(e) => handleCertClick(e, cert)}
               >
                 <div className="cert-card-icon">
-                  <span>{issuerIcons[cert.issuer] || <FiAward size={22} />}</span>
+                  <span>{cert.isImage ? <FiImage size={22} /> : (issuerIcons[cert.issuer] || <FiAward size={22} />)}</span>
                 </div>
                 <div className="cert-card-content">
                   <h3 className="cert-title">{cert.title}</h3>
@@ -97,6 +94,34 @@ export default function Certificates() {
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {/* Image Preview Modal */}
+        <AnimatePresence>
+          {previewImage && (
+            <motion.div
+              className="lightbox-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setPreviewImage(null)}
+            >
+              <motion.div
+                className="lightbox-content"
+                initial={{ scale: 0.85, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.85, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button className="lightbox-close" onClick={() => setPreviewImage(null)}>
+                  <FiX size={24} />
+                </button>
+                <div className="lightbox-image-wrapper">
+                  <img src={previewImage} alt="Certificate" className="lightbox-img" />
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

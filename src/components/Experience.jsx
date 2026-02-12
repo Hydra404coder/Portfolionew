@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import { FiBriefcase, FiMapPin, FiCalendar, FiChevronDown, FiImage, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { experience } from '../data/portfolioData';
 
@@ -72,7 +71,6 @@ function Lightbox({ photos, currentIndex, companyName, onClose, onPrev, onNext }
 }
 
 export default function Experience() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [lightbox, setLightbox] = useState({ open: false, photos: [], index: 0, company: '' });
   const [hoverPreview, setHoverPreview] = useState({ visible: false, src: '', x: 0, y: 0 });
@@ -114,29 +112,21 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" className="section experience" ref={ref}>
+    <section id="experience" className="section experience">
       <div className="container">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="section-header">
           <span className="section-tag">Experience</span>
           <h2 className="section-title">
             Where I've <span className="gradient-text">worked</span>
           </h2>
-        </motion.div>
+        </div>
 
         <div className="timeline">
           <div className="timeline-line" />
           {experience.map((exp, i) => (
-            <motion.div
+            <div
               key={i}
               className={`timeline-item ${i % 2 === 0 ? 'left' : 'right'}`}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.2 }}
             >
               <div className="timeline-dot" />
               <motion.div
@@ -218,7 +208,7 @@ export default function Experience() {
                   )}
                 </AnimatePresence>
               </motion.div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

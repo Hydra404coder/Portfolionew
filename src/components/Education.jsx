@@ -1,34 +1,23 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import { FiBookOpen, FiCalendar, FiMapPin } from 'react-icons/fi';
 import { education } from '../data/portfolioData';
 
 export default function Education() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
-
   return (
-    <section className="section education-section" ref={ref}>
+    <section className="section education-section">
       <div className="container">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="section-header">
           <span className="section-tag">Education</span>
           <h2 className="section-title">
             Academic <span className="gradient-text">background</span>
           </h2>
-        </motion.div>
+        </div>
 
         <div className="education-cards">
           {education.map((edu, i) => (
             <motion.div
               key={i}
               className="edu-card"
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.2 }}
               whileHover={{ y: -5 }}
             >
               <div className="edu-icon">

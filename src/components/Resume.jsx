@@ -1,36 +1,23 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import { FiFileText, FiDownload, FiExternalLink } from 'react-icons/fi';
 
 export default function Resume() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
-
   return (
-    <section id="resume" className="section resume-section" ref={ref}>
+    <section id="resume" className="section resume-section">
       <div className="container">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="section-header">
           <span className="section-tag">Resume</span>
           <h2 className="section-title">
             My <span className="gradient-text">resume</span>
           </h2>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="resume-card"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
+        <div className="resume-card">
           <div className="resume-icon">
             <FiFileText size={64} />
           </div>
           <h3 className="resume-title">Akhil Shibu</h3>
-          <p className="resume-subtitle">AI/ML Developer &amp; Tech Enthusiast</p>
+          <p className="resume-subtitle">AI/ML Engineer &amp; Full Stack Developer</p>
           <div className="resume-buttons">
             <motion.a
               href="/resume/Akhil_Resume.pdf"
@@ -54,7 +41,7 @@ export default function Resume() {
               Open in New Tab
             </motion.a>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

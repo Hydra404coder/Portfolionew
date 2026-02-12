@@ -12,7 +12,7 @@ export const personalData = {
   github: 'https://github.com/Hydra404coder',
   location: 'Bangalore, India',
   about:
-    "I'm Akhil Shibu, currently pursuing a Bachelor's in Artificial Intelligence and Machine Learning. I'm passionate about building AI projects and developing machine learning pipelines. I also enjoy solving engineering problems through structured approaches. In my free time, I like singing, building apps, and exploring other technical applications.",
+    "I'm Akhil Shibu, a driven engineering student specializing in Artificial Intelligence and Machine Learning at Atria Institute of Technology, Bangalore. I build production-grade AI systems — from enterprise RAG platforms and agentic workflows to real-time computer vision applications. As a Google Student AI Ambassador and former NeuralSeek intern, I bridge the gap between cutting-edge AI research and practical, scalable solutions. When I'm not coding, you'll find me singing, experimenting with new frameworks, or exploring creative technical projects.",
 };
 
 export const education = [
@@ -108,7 +108,7 @@ export const projects = [
     title: 'AIKSP – AI Internal Knowledge Search Platform',
     tech: ['React', 'Node.js', 'MongoDB', 'RAG', 'Gemini AI'],
     description:
-      'Built an enterprise-grade RAG platform that lets employees chat with internal company documents. Features multi-tenancy, role-based access control, JWT auth, AI-powered Q&A with verifiable citations, and a full-text search fallback system. Deployed on Vercel.',
+      'Architected an enterprise-grade RAG platform enabling employees to interact with internal documents through natural language queries. Features include multi-tenancy, role-based access control, JWT authentication, AI-powered Q&A with verifiable source citations, and a full-text search fallback. Deployed on Vercel for production use.',
     github: 'https://github.com/Hydra404coder/AIKSP----AI-Internal-Knowledge-Search-Platform',
     live: 'https://aiksp-ai-internal-knowledge-search.vercel.app/',
   },
@@ -116,7 +116,7 @@ export const projects = [
     title: 'AI Powered Mass Certificate Generator',
     tech: ['Python', 'Flask', 'PyQt6', 'OpenCV', 'React.js'],
     description:
-      'Developed an automated bulk certificate generator with Python, PyQt6, and React, reducing manual creation and printing time by more than 90%. Streamlined large-volume certificate workflows with template mapping, real-time previews, and one-click export.',
+      'Engineered an automated bulk certificate generation system with Python, PyQt6, and React, reducing manual creation and distribution time by over 90%. Streamlined high-volume certificate workflows through template mapping, real-time preview rendering, and one-click PDF export.',
     github: 'https://github.com/Hydra404coder',
   },
   {
@@ -130,7 +130,7 @@ export const projects = [
     title: 'YTRAG – Retrieval-Augmented Generation System',
     tech: ['Python', 'LangChain', 'ChromaDB', 'Gemini AI', 'RAG'],
     description:
-      'Developed an enterprise-grade RAG system combining document processing, semantic search, and Gemini AI for intelligent Q&A. Supports PDFs, text, and CSV ingestion with confidence scoring, source citations, streaming output, and session history.',
+      'Engineered an enterprise-grade RAG system integrating document processing pipelines, semantic search, and Gemini AI for intelligent question-answering. Supports PDF, text, and CSV ingestion with confidence scoring, source citations, streaming output, and persistent session history.',
     github: 'https://github.com/Hydra404coder/RAG-Gemini-Code',
   },
   {
@@ -164,6 +164,13 @@ export const projects = [
 ];
 
 export const certificates = [
+  {
+    title: 'Google Gemini Campus Ambassador — Completion Certificate',
+    issuer: 'Google',
+    link: '/photos/Gemini-cert/Cert.png',
+    category: 'AI',
+    isImage: true,
+  },
   {
     title: 'Agentic AI Internship Certificate',
     issuer: 'NeuralSeek',
@@ -246,4 +253,21 @@ export const awards = [
   'Finalist in an intercollegiate hackathon at AIT, building an innovative tech solution evaluated by Oracle.',
   'Selected for the National Level Smart India Hackathon (SIH) — proposed solution tackled real-world agricultural challenges.',
   'Event Organizer — Led an AI-powered Murder Mystery game at college fest using React, Flask, and Vertex AI.',
+];
+
+export const documents = [
+  {
+    title: 'Google Student AI Ambassador — Internship Agreement',
+    description: 'Official internship contract for the Google Gemini Campus Ambassador Program.',
+    file: '/photos/google-agrmnt/Akhil Shibu-Internship-Contract- Student-Ambassador  (1).pdf',
+    type: 'pdf',
+    issuer: 'Google',
+  },
+  {
+    title: 'NeuralSeek — Internship Agreement',
+    description: 'Official internship agreement for the Agentic AI Developer Internship at NeuralSeek.',
+    file: '/photos/Nuralseek-agrmnt/internship agreement form -Akhil Shibu .pdf',
+    type: 'pdf',
+    issuer: 'NeuralSeek',
+  },
 ];

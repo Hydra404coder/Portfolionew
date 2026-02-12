@@ -9,6 +9,7 @@ import Skills from './components/Skills';
 import Education from './components/Education';
 import Awards from './components/Awards';
 import Certificates from './components/Certificates';
+import Documents from './components/Documents';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -101,6 +102,7 @@ export default function App() {
         <Education />
         <Awards />
         <Certificates />
+        <Documents />
         <Resume />
         <Contact />
       </main>

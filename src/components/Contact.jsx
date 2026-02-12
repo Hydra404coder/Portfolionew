@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import {
   FiMail,
   FiMapPin,
@@ -12,7 +11,6 @@ import {
 import { personalData } from '../data/portfolioData';
 
 export default function Contact() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -78,28 +76,18 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section contact" ref={ref}>
+    <section id="contact" className="section contact">
       <div className="container">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="section-header">
           <span className="section-tag">Contact</span>
           <h2 className="section-title">
             Let's <span className="gradient-text">connect</span>
           </h2>
-        </motion.div>
+        </div>
 
         <div className="contact-grid">
           {/* Info */}
-          <motion.div
-            className="contact-info"
-            initial={{ opacity: 0, x: -40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <div className="contact-info">
             <h3>Get in touch</h3>
             <p>
               I'm always open to new opportunities, collaborations, and
@@ -151,15 +139,12 @@ export default function Contact() {
                 <FiArrowUpRight size={14} />
               </motion.a>
             </div>
-          </motion.div>
+          </div>
 
           {/* Form */}
-          <motion.form
+          <form
             className="contact-form"
             onSubmit={handleSubmit}
-            initial={{ opacity: 0, x: 40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
           >
             <div className="form-row">
               <div className="form-group">
@@ -220,7 +205,7 @@ export default function Contact() {
               <FiSend size={16} />
               {status === 'sent' ? 'Opening Mail Client...' : 'Send Message'}
             </motion.button>
-          </motion.form>
+          </form>
         </div>
       </div>
     </section>

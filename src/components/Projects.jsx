@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import { FiGithub, FiExternalLink, FiChevronRight, FiChevronDown } from 'react-icons/fi';
 import { projects } from '../data/portfolioData';
 
@@ -39,7 +38,6 @@ const techColors = {
 };
 
 export default function Projects() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [hoveredProject, setHoveredProject] = useState(null);
   const [showAll, setShowAll] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -55,28 +53,20 @@ export default function Projects() {
   const visibleProjects = isMobile && !showAll ? projects.slice(0, MOBILE_LIMIT) : projects;
 
   return (
-    <section id="projects" className="section projects" ref={ref}>
+    <section id="projects" className="section projects">
       <div className="container">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="section-header">
           <span className="section-tag">Projects</span>
           <h2 className="section-title">
             Things I've <span className="gradient-text">built</span>
           </h2>
-        </motion.div>
+        </div>
 
         <div className="projects-grid">
           {visibleProjects.map((project, i) => (
             <motion.div
               key={i}
               className="project-card"
-              initial={{ opacity: 0, y: 40 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
               onHoverStart={() => setHoveredProject(i)}
               onHoverEnd={() => setHoveredProject(null)}
               whileHover={{ y: -8 }}
@@ -169,12 +159,7 @@ export default function Projects() {
           </motion.div>
         )}
 
-        <motion.div
-          className="projects-cta"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.8 }}
-        >
+        <div className="projects-cta">
           <motion.a
             href="https://github.com/Hydra404coder"
             target="_blank"
@@ -185,7 +170,7 @@ export default function Projects() {
           >
             View More on GitHub <FiChevronRight size={16} />
           </motion.a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

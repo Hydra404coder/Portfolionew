@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import Marquee from 'react-fast-marquee';
 import { skills } from '../data/portfolioData';
 import {
@@ -42,30 +41,18 @@ const iconMap = {
 };
 
 export default function Skills() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
-
   return (
-    <section id="skills" className="section skills-section" ref={ref}>
+    <section id="skills" className="section skills-section">
       <div className="container">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="section-header">
           <span className="section-tag">Skills</span>
           <h2 className="section-title">
             My <span className="gradient-text">tech stack</span>
           </h2>
-        </motion.div>
+        </div>
 
         {/* Marquee ticker */}
-        <motion.div
-          className="skills-marquee"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
+        <div className="skills-marquee">
           <Marquee speed={40} gradient={false} pauseOnHover>
             {Object.values(skills)
               .flat()
@@ -76,17 +63,14 @@ export default function Skills() {
                 </div>
               ))}
           </Marquee>
-        </motion.div>
+        </div>
 
         {/* Category grid */}
         <div className="skills-grid">
           {Object.entries(skills).map(([category, items], i) => (
-            <motion.div
+            <div
               key={category}
               className="skill-category"
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + i * 0.15 }}
             >
               <h3 className="skill-category-title">{category}</h3>
               <div className="skill-items">
@@ -102,7 +86,7 @@ export default function Skills() {
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
