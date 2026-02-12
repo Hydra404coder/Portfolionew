@@ -46,7 +46,7 @@ export default function Resume() {
 
           <div className="resume-preview">
             <img
-              src="/photos/resume.png"
+              src="/photos/resume.jpg"
               alt="Resume preview"
               className="resume-preview-img"
             />
