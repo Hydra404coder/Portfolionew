@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { FiBriefcase, FiMapPin, FiCalendar, FiChevronDown, FiImage, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { experience } from '../data/portfolioData';
 
@@ -75,6 +75,13 @@ export default function Experience() {
   const [lightbox, setLightbox] = useState({ open: false, photos: [], index: 0, company: '' });
   const [hoverPreview, setHoverPreview] = useState({ visible: false, src: '', x: 0, y: 0 });
 
+  const timelineRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ['start 80%', 'end 50%'],
+  });
+  const lineProgress = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
   const openLightbox = (photos, index, company) => {
     setLightbox({ open: true, photos, index, company });
   };
@@ -119,17 +126,11 @@ export default function Experience() {
           <h2 className="section-title">
             Where I've <span className="gradient-text">worked</span>
           </h2>
-          <div className="section-header-illus">
-            <img
-              src="/photos/imgs/download (3).png"
-              alt="Work experience illustration"
-              className="section-illus"
-            />
-          </div>
         </div>
 
-        <div className="timeline">
+        <div className="timeline" ref={timelineRef}>
           <div className="timeline-line" />
+          <motion.div className="timeline-line-fill" style={{ scaleY: lineProgress, transformOrigin: 'top' }} />
           {experience.map((exp, i) => (
             <div
               key={i}

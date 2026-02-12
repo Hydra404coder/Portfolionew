@@ -120,40 +120,14 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-
-            <div className="contact-socials">
-              <motion.a
-                href={personalData.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FiGithub size={20} />
-                <span>GitHub</span>
-                <FiArrowUpRight size={14} />
-              </motion.a>
-              <motion.a
-                href={personalData.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FiLinkedin size={20} />
-                <span>LinkedIn</span>
-                <FiArrowUpRight size={14} />
-              </motion.a>
-            </div>
           </div>
 
-          {/* Form */}
-          <form
-            className="contact-form"
-            onSubmit={handleSubmit}
-          >
+          {/* Form + Socials */}
+          <div className="contact-right">
+            <form
+              className="contact-form"
+              onSubmit={handleSubmit}
+            >
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="name">Name</label>
@@ -214,6 +188,34 @@ export default function Contact() {
               {status === 'sent' ? 'Opening Mail Client...' : 'Send Message'}
             </motion.button>
           </form>
+
+            <div className="contact-socials">
+              <motion.a
+                href={personalData.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FiGithub size={20} />
+                <span>GitHub</span>
+                <FiArrowUpRight size={14} />
+              </motion.a>
+              <motion.a
+                href={personalData.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FiLinkedin size={20} />
+                <span>LinkedIn</span>
+                <FiArrowUpRight size={14} />
+              </motion.a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

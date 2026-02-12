@@ -29,31 +29,30 @@ export default function About() {
                 alt="Akhil Shibu - AI/ML Engineer"
                 className="about-image"
               />
-              <div className="about-image-accent" />
+            </div>
+            <div className="about-highlights">
+              <div className="highlight">
+                <span className="highlight-icon">🎓</span>
+                <span>B.E. in AI & Machine Learning</span>
+              </div>
+              <div className="highlight">
+                <span className="highlight-icon"><SiGoogle size={18} color="#4285F4" /></span>
+                <span>Google Student AI Ambassador</span>
+              </div>
+              <div className="highlight">
+                <span className="highlight-icon">🏆</span>
+                <span>SIH National Level Selection</span>
+              </div>
+              <div className="highlight">
+                <span className="highlight-icon">💡</span>
+                <span>Bangalore Tech Summit 2025 Presenter</span>
+              </div>
             </div>
           </div>
 
           <div className="about-right">
             <div className="about-text">
               <p>{personalData.about}</p>
-              <div className="about-highlights">
-                <div className="highlight">
-                  <span className="highlight-icon">🎓</span>
-                  <span>B.E. in AI & Machine Learning</span>
-                </div>
-                <div className="highlight">
-                  <span className="highlight-icon"><SiGoogle size={18} color="#4285F4" /></span>
-                  <span>Google Student AI Ambassador</span>
-                </div>
-                <div className="highlight">
-                  <span className="highlight-icon">🏆</span>
-                  <span>SIH National Level Selection</span>
-                </div>
-                <div className="highlight">
-                  <span className="highlight-icon">💡</span>
-                  <span>Bangalore Tech Summit 2025 Presenter</span>
-                </div>
-              </div>
             </div>
 
             <div className="about-stats">
