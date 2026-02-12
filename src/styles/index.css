@@ -888,6 +888,11 @@ code {
   border: 3px solid var(--bg-primary);
   top: 30px;
   z-index: 2;
+  transition: box-shadow 0.4s ease;
+}
+
+.timeline-dot--active {
+  box-shadow: 0 0 12px 4px var(--accent-glow);
 }
 
 .timeline-item.left .timeline-dot {
@@ -904,7 +909,12 @@ code {
   border-radius: var(--radius-lg);
   padding: 28px;
   width: 100%;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
+}
+
+.timeline-item--active .timeline-card {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px -4px var(--accent-glow);
 }
 
 .timeline-card:hover {
@@ -1638,15 +1648,37 @@ code {
 /* ===================================
    Resume Section
    =================================== */
-.resume-card {
-  max-width: 500px;
+.resume-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 48px;
+  align-items: center;
+  max-width: 960px;
   margin: 0 auto;
+}
+
+.resume-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 48px 40px;
   text-align: center;
   box-shadow: var(--shadow-lg);
+}
+
+.resume-preview {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--shadow-lg);
+}
+
+.resume-preview-img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  display: block;
 }
 
 .resume-icon {
@@ -2285,6 +2317,11 @@ code {
 
   .contact-info h3 {
     font-size: 1.3rem;
+  }
+
+  .resume-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
 
   .resume-card {

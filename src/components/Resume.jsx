@@ -12,34 +12,44 @@ export default function Resume() {
           </h2>
         </div>
 
-        <div className="resume-card">
-          <div className="resume-icon">
-            <FiFileText size={64} />
+        <div className="resume-grid">
+          <div className="resume-card">
+            <div className="resume-icon">
+              <FiFileText size={64} />
+            </div>
+            <h3 className="resume-title">Akhil Shibu</h3>
+            <p className="resume-subtitle">AI/ML Engineer &amp; Full Stack Developer</p>
+            <div className="resume-buttons">
+              <motion.a
+                href="/resume/Akhil_Resume.pdf"
+                download
+                className="btn btn-primary"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FiDownload size={18} />
+                Download Resume
+              </motion.a>
+              <motion.a
+                href="/resume/Akhil_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FiExternalLink size={18} />
+                Open in New Tab
+              </motion.a>
+            </div>
           </div>
-          <h3 className="resume-title">Akhil Shibu</h3>
-          <p className="resume-subtitle">AI/ML Engineer &amp; Full Stack Developer</p>
-          <div className="resume-buttons">
-            <motion.a
-              href="/resume/Akhil_Resume.pdf"
-              download
-              className="btn btn-primary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FiDownload size={18} />
-              Download Resume
-            </motion.a>
-            <motion.a
-              href="/resume/Akhil_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-outline"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FiExternalLink size={18} />
-              Open in New Tab
-            </motion.a>
+
+          <div className="resume-preview">
+            <img
+              src="/photos/resume.png"
+              alt="Resume preview"
+              className="resume-preview-img"
+            />
           </div>
         </div>
       </div>

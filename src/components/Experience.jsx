@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { FiBriefcase, FiMapPin, FiCalendar, FiChevronDown, FiImage, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { experience } from '../data/portfolioData';
 
@@ -74,6 +74,7 @@ export default function Experience() {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [lightbox, setLightbox] = useState({ open: false, photos: [], index: 0, company: '' });
   const [hoverPreview, setHoverPreview] = useState({ visible: false, src: '', x: 0, y: 0 });
+  const [activeIndex, setActiveIndex] = useState(-1);
 
   const timelineRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -81,6 +82,12 @@ export default function Experience() {
     offset: ['start 80%', 'end 50%'],
   });
   const lineProgress = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+  useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    const total = experience.length;
+    const idx = Math.floor(v * total);
+    setActiveIndex(Math.min(idx, total - 1));
+  });
 
   const openLightbox = (photos, index, company) => {
     setLightbox({ open: true, photos, index, company });
@@ -134,9 +141,9 @@ export default function Experience() {
           {experience.map((exp, i) => (
             <div
               key={i}
-              className={`timeline-item ${i % 2 === 0 ? 'left' : 'right'}`}
+              className={`timeline-item ${i % 2 === 0 ? 'left' : 'right'}${i <= activeIndex ? ' timeline-item--active' : ''}`}
             >
-              <div className="timeline-dot" />
+              <div className={`timeline-dot${i <= activeIndex ? ' timeline-dot--active' : ''}`} />
               <motion.div
                 className="timeline-card"
                 whileHover={{ y: -5, boxShadow: '0 20px 60px rgba(0,0,0,0.15)' }}
