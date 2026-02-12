@@ -112,94 +112,115 @@ export default function Hero() {
       </div>
 
       <motion.div
-        className="hero-content"
+        className="hero-inner"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <motion.div className="hero-badge" variants={itemVariants}>
-          <span className="badge-dot" />
-          Available for opportunities
+        <motion.div className="hero-content" variants={containerVariants}>
+          <motion.div className="hero-badge" variants={itemVariants}>
+            <span className="badge-dot" />
+            Available for opportunities
+          </motion.div>
+
+          <motion.h1 className="hero-title" variants={itemVariants}>
+            Hi, I'm{' '}
+            <span className="gradient-text">{personalData.name}</span>
+          </motion.h1>
+
+          <motion.div className="hero-typing" variants={itemVariants}>
+            <TypeAnimation
+              sequence={[
+                'Building Intelligent Systems',
+                2000,
+                'Full Stack Developer',
+                2000,
+                'AI/ML Engineer',
+                2000,
+                'Google Student Ambassador',
+                2000,
+              ]}
+              wrapper="span"
+              speed={50}
+              repeat={Infinity}
+              className="typing-text"
+            />
+          </motion.div>
+
+          <motion.p className="hero-description" variants={itemVariants}>
+            Engineering student passionate about AI, Machine Learning, and building
+            impactful full-stack applications. Currently exploring the frontiers of
+            Generative AI and Agentic systems.
+          </motion.p>
+
+          <motion.div className="hero-buttons" variants={itemVariants}>
+            <motion.a
+              href="#projects"
+              className="btn btn-primary"
+              whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(99,102,241,0.4)' }}
+              whileTap={{ scale: 0.95 }}
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              View My Work
+            </motion.a>
+            <motion.a
+              href="#contact"
+              className="btn btn-outline"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Get In Touch
+            </motion.a>
+          </motion.div>
+
+          <motion.div className="hero-socials" variants={itemVariants}>
+            <motion.a
+              href={personalData.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.2, y: -3 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="GitHub"
+            >
+              <FiGithub size={22} />
+            </motion.a>
+            <motion.a
+              href={personalData.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.2, y: -3 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="LinkedIn"
+            >
+              <FiLinkedin size={22} />
+            </motion.a>
+          </motion.div>
         </motion.div>
 
-        <motion.h1 className="hero-title" variants={itemVariants}>
-          Hi, I'm{' '}
-          <span className="gradient-text">{personalData.name}</span>
-        </motion.h1>
-
-        <motion.div className="hero-typing" variants={itemVariants}>
-          <TypeAnimation
-            sequence={[
-              'Building Intelligent Systems',
-              2000,
-              'Full Stack Developer',
-              2000,
-              'AI/ML Engineer',
-              2000,
-              'Google Student Ambassador',
-              2000,
-            ]}
-            wrapper="span"
-            speed={50}
-            repeat={Infinity}
-            className="typing-text"
-          />
-        </motion.div>
-
-        <motion.p className="hero-description" variants={itemVariants}>
-          Engineering student passionate about AI, Machine Learning, and building
-          impactful full-stack applications. Currently exploring the frontiers of
-          Generative AI and Agentic systems.
-        </motion.p>
-
-        <motion.div className="hero-buttons" variants={itemVariants}>
-          <motion.a
-            href="#projects"
-            className="btn btn-primary"
-            whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(99,102,241,0.4)' }}
-            whileTap={{ scale: 0.95 }}
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-            }}
+        {/* Hero Illustration */}
+        <motion.div
+          className="hero-illustration"
+          variants={itemVariants}
+        >
+          <motion.div
+            className="hero-image-wrapper"
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
           >
-            View My Work
-          </motion.a>
-          <motion.a
-            href="#contact"
-            className="btn btn-outline"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            Get In Touch
-          </motion.a>
-        </motion.div>
-
-        <motion.div className="hero-socials" variants={itemVariants}>
-          <motion.a
-            href={personalData.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.2, y: -3 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label="GitHub"
-          >
-            <FiGithub size={22} />
-          </motion.a>
-          <motion.a
-            href={personalData.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.2, y: -3 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label="LinkedIn"
-          >
-            <FiLinkedin size={22} />
-          </motion.a>
+            <img
+              src="/photos/imgs/download.png"
+              alt="AI & Development Illustration"
+              className="hero-image"
+            />
+          </motion.div>
+          <div className="hero-image-glow" />
         </motion.div>
       </motion.div>
 

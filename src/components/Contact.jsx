@@ -94,6 +94,14 @@ export default function Contact() {
               interesting projects. Drop me a message!
             </p>
 
+            <div className="contact-illustration">
+              <img
+                src="/photos/imgs/download (4).png"
+                alt="Contact illustration"
+                className="contact-illus-img"
+              />
+            </div>
+
             <div className="contact-details">
               <div className="contact-detail">
                 <FiMail size={20} />

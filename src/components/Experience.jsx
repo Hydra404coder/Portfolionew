@@ -119,6 +119,13 @@ export default function Experience() {
           <h2 className="section-title">
             Where I've <span className="gradient-text">worked</span>
           </h2>
+          <div className="section-header-illus">
+            <img
+              src="/photos/imgs/download (3).png"
+              alt="Work experience illustration"
+              className="section-illus"
+            />
+          </div>
         </div>
 
         <div className="timeline">

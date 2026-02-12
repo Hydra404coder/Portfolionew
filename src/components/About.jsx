@@ -22,40 +22,53 @@ export default function About() {
         </div>
 
         <div className="about-grid">
-          <div className="about-text">
-            <p>{personalData.about}</p>
-            <div className="about-highlights">
-              <div className="highlight">
-                <span className="highlight-icon">🎓</span>
-                <span>B.E. in AI & Machine Learning</span>
-              </div>
-              <div className="highlight">
-                <span className="highlight-icon"><SiGoogle size={18} color="#4285F4" /></span>
-                <span>Google Student AI Ambassador</span>
-              </div>
-              <div className="highlight">
-                <span className="highlight-icon">🏆</span>
-                <span>SIH National Level Selection</span>
-              </div>
-              <div className="highlight">
-                <span className="highlight-icon">💡</span>
-                <span>Bangalore Tech Summit 2025 Presenter</span>
-              </div>
+          <div className="about-left">
+            <div className="about-image-container">
+              <img
+                src="/photos/imgs/download (1).png"
+                alt="Akhil Shibu - AI/ML Engineer"
+                className="about-image"
+              />
+              <div className="about-image-accent" />
             </div>
           </div>
 
-          <div className="about-stats">
-            {stats.map((stat, i) => (
-              <motion.div
-                key={i}
-                className="stat-card"
-                whileHover={{ scale: 1.05, y: -5 }}
-              >
-                <div className="stat-icon">{stat.icon}</div>
-                <div className="stat-value">{stat.value}</div>
-                <div className="stat-label">{stat.label}</div>
-              </motion.div>
-            ))}
+          <div className="about-right">
+            <div className="about-text">
+              <p>{personalData.about}</p>
+              <div className="about-highlights">
+                <div className="highlight">
+                  <span className="highlight-icon">🎓</span>
+                  <span>B.E. in AI & Machine Learning</span>
+                </div>
+                <div className="highlight">
+                  <span className="highlight-icon"><SiGoogle size={18} color="#4285F4" /></span>
+                  <span>Google Student AI Ambassador</span>
+                </div>
+                <div className="highlight">
+                  <span className="highlight-icon">🏆</span>
+                  <span>SIH National Level Selection</span>
+                </div>
+                <div className="highlight">
+                  <span className="highlight-icon">💡</span>
+                  <span>Bangalore Tech Summit 2025 Presenter</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="about-stats">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={i}
+                  className="stat-card"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                >
+                  <div className="stat-icon">{stat.icon}</div>
+                  <div className="stat-value">{stat.value}</div>
+                  <div className="stat-label">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

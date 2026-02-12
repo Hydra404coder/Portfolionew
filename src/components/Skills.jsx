@@ -51,6 +51,24 @@ export default function Skills() {
           </h2>
         </div>
 
+        {/* Skills intro with illustration */}
+        <div className="skills-intro">
+          <div className="skills-intro-text">
+            <p>
+              I work across the full stack with a strong focus on AI/ML technologies.
+              From building intelligent backends to crafting responsive frontends,
+              here's what I bring to the table.
+            </p>
+          </div>
+          <div className="skills-intro-image">
+            <img
+              src="/photos/imgs/download (2).png"
+              alt="Skills & Technologies"
+              className="skills-illus"
+            />
+          </div>
+        </div>
+
         {/* Marquee ticker */}
         <div className="skills-marquee">
           <Marquee speed={40} gradient={false} pauseOnHover>
