@@ -592,7 +592,7 @@ code {
   align-items: center;
   justify-content: center;
   position: relative;
-  max-width: 480px;
+  max-width: 620px;
 }
 
 .hero-image-wrapper {
@@ -602,7 +602,7 @@ code {
 
 .hero-image {
   width: 100%;
-  max-width: 420px;
+  max-width: 580px;
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
